@@ -1,0 +1,3 @@
+include LICENSE
+include primecount.c
+include README.md
