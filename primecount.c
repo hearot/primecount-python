@@ -97,13 +97,13 @@ PyObject* pi(PyObject* self, PyObject* args) {
 static PyMethodDef primecount_methods[] = {
     {"nth_prime", (PyCFunction)nth_prime, METH_VARARGS,
      PRIMECOUNT_DOCSTRING_NTH_PRIME},
-    {"phi", (PyCFunction)phi, METH_VARARGS, PRIMECOUNT_DOCSTRING_PHI "primes"},
+    {"phi", (PyCFunction)phi, METH_VARARGS, PRIMECOUNT_DOCSTRING_PHI},
     {"pi", (PyCFunction)pi, METH_VARARGS, PRIMECOUNT_DOCSTRING_PI},
     {NULL, NULL, 0, NULL}};
 
-static PyModuleDef primecount_module = {PyModuleDef_HEAD_INIT, "primecount",
-                                        PRIMECOUNT_PACKAGE_DESCRIPTION, 0,
-                                        primecount_methods};
+static PyModuleDef primecount_module = {
+    PyModuleDef_HEAD_INIT, PRIMECOUNT_PACKAGE_NAME,
+    PRIMECOUNT_PACKAGE_DESCRIPTION, 0, primecount_methods};
 
 PyMODINIT_FUNC PyInit_primecount() {
   PyObject* primecount = PyModule_Create(&primecount_module);
