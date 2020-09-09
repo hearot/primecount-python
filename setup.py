@@ -29,7 +29,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import re
-from distutils.core import Extension, setup
+from setuptools import Extension, setup
 
 CLASSIFIERS = [
     "Development Status :: 5 - Production/Stable",
@@ -56,6 +56,7 @@ CLASSIFIERS = [
 ]
 KEYWORDS = "c calculation computation extension primecount primes"
 GITHUB_REPOSITORY = "https://github.com/hearot/primecount/blob/v%s/"
+GITHUB_URL = "https://github.com/hearot/primecount"
 LICENSE = "BSD2"
 PACKAGE_NAME = "primecount"
 SOURCE_FILE = "primecount.c"
@@ -80,22 +81,29 @@ with open("README.md", encoding="utf-8") as f:
     long_description = f.read().replace("./", GITHUB_REPOSITORY % version)
 
 
-setup(
-    author=author,
-    author_email=author_email,
-    classifiers=CLASSIFIERS,
-    description=description,
-    ext_modules=[primecount_module],
-    keywords=KEYWORDS,
-    license="BSD2",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    name=PACKAGE_NAME,
-    project_urls={
-        "Tracker": "https://github.com/hearot/primecount/issues",
-        "Source": "https://github.com/hearot/primecount",
-    },
-    python_requires=">=3.6.*",
-    url=url,
-    version=version,
-)
+try:
+    setup(
+        author=author,
+        author_email=author_email,
+        classifiers=CLASSIFIERS,
+        description=description,
+        ext_modules=[primecount_module],
+        keywords=KEYWORDS,
+        license="BSD2",
+        long_description=long_description,
+        long_description_content_type="text/markdown",
+        name=PACKAGE_NAME,
+        project_urls={
+            "Tracker": GITHUB_URL + "/issues",
+            "Source": GITHUB_URL,
+        },
+        python_requires=">=3.6.*",
+        url=url,
+        version=version,
+    )
+except SystemExit:
+    print(
+        "\nIt seems the installation didn't end well.\n"
+        "Have you installed primecount as library?\n"
+        f"Follow the guide on {GITHUB_URL}."
+    )
